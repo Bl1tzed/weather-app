@@ -2,11 +2,17 @@
 import { useState } from "react"
 //eslint-disable-next-line react/prop-types
 export default function LocationInput({setLocation}) {
-	const [value, setValue] = useState("Omsk")
+	const [search, setSearch] = useState("")
 	return (
 		<>
-			<input value={value} onChange={(event) => setValue(event.target.value)}></input>
-			<button onClick={() => setLocation(value)}>Submit</button>
+			<input
+				value={search} 
+				onChange={(event) => setSearch(event.target.value)}
+				placeholder="Search for city"
+			>
+
+			</input>
+			<button onClick={() => setLocation(search)}>Submit</button>
 		</>
 	)
 }
