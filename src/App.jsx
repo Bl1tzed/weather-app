@@ -22,7 +22,7 @@ export default function App() {
         const response = await fetch(url + new URLSearchParams({
           q: location,
           key: key,
-          days: 1,
+          days: 4,
           aqi: "no",
           alerts: "no"
         }));
