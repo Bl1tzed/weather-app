@@ -29,7 +29,7 @@ input {
   border: none;
 }
 
-button {
+.search-button {
   background-color: $columnsBgColor;
   border-radius: 5px;
   padding: 10px 20px;
@@ -55,7 +55,7 @@ button:hover {
   font: 1.4rem "Century Gothic", Futura, sans-serif;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 50rem 20rem 20rem;
+  grid-template-columns: 60rem 20rem 20rem;
   grid-template-rows: 25rem;
   column-gap: 15px;
   width: 100%;
@@ -94,13 +94,28 @@ button:hover {
 
 #column1-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1rem repeat(4, 1fr) 1rem;
   column-gap: 0.5rem;
 }
 
 #wrapper-content-box {
   display: flex;
   justify-content: center;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-button {
+  font-size: 2rem;
+  font-weight: 700;
+  border: none;
+  color: $opacityColorMedium;
+  background: none;
+  padding: 0.8rem;
 }
 
 .forecast-day {
@@ -131,18 +146,18 @@ button:hover {
 }
 
 .glow {
-  filter: drop-shadow(0 0 1rem rgb(185, 185, 185));
+  filter: drop-shadow(0 0 1rem rgb(156, 156, 156));
 }
 
 #column2 {
   display: grid;
-  grid-template-columns: repeat(2, 9rem);
-  grid-template-rows: 3rem 18rem 3rem;
+  grid-template-columns: 12rem 6.8rem;
+  grid-template-rows: 3rem 13rem 5rem 3rem min-content;
   grid-template-areas:
     "cur-location cur-time"
     "cur-img cur-img"
+    "cur-desc cur-desc"
     "cur-humidity cur-temp";
-  box-sizing: border-box;
   background-color: $columnsBgColorBlack;
 }
 
@@ -151,23 +166,26 @@ button:hover {
   margin-left: 1rem;
   text-align: start;
 }
+
 .current-time {
   grid-area: cur-time;
   margin-right: 1rem;
   text-align: end;
 }
+
 .current-icon {
   grid-area: cur-img;
   display: grid;
   justify-content: center;
-  align-content: center;
-  margin-left: 1rem;
+  align-items: start;
 }
+
 .current-humidity {
   grid-area: cur-humidity;
   margin-left: 1rem;
   text-align: start;
 }
+
 .current-temp {
   grid-area: cur-temp;
   margin-right: 1rem;
@@ -180,9 +198,10 @@ button:hover {
 }
 
 .current-description {
-  display: absolute;
-  text-align: center;
-  
+  grid-area: cur-desc;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 // .weatherInformation {

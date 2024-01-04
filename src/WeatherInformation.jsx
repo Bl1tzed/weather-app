@@ -1,19 +1,35 @@
-
+import { useState } from "react"
 
 
 export default function WeatherInformation({ fetchData }) {
-	
+	const [showMax, setShowMax] = useState(3)
+
 	if(!fetchData) return null
 	if(!fetchData.location) return "Incorrect city"
+
+	function handlePrevClick() {
+		if(showMax > 3) {
+			setShowMax(showMax - 1)
+		}
+	}
+
+	function 	handleNextClick() {
+		if(showMax < 6) {
+			setShowMax(showMax + 1)
+		}
+	}
+
 	return (
 		<>
 			<div id="column1">
 				<div id="column1-header">{fetchData.location.name}</div>
 				<div id="column1-content">
-					<div className="forecast-day"><ForecastDayInfo index={0} fetchData={fetchData}/></div>
-					<div className="forecast-day"><ForecastDayInfo index={1} fetchData={fetchData}/></div>
-					<div className="forecast-day"><ForecastDayInfo index={2} fetchData={fetchData}/></div>
-					<div className="forecast-day"><ForecastDayInfo index={3} fetchData={fetchData}/></div>
+					<div className="button-wrapper"><button className="slide-button" onClick={handlePrevClick}>&lt;</button></div>
+					<div className="forecast-day"><ForecastDayInfo index={showMax - 3} fetchData={fetchData}/></div>
+					<div className="forecast-day"><ForecastDayInfo index={showMax - 2} fetchData={fetchData}/></div>
+					<div className="forecast-day"><ForecastDayInfo index={showMax - 1} fetchData={fetchData}/></div>
+					<div className="forecast-day"><ForecastDayInfo index={showMax} fetchData={fetchData}/></div>
+					<div className="button-wrapper"><button className="slide-button" onClick={handleNextClick}>&gt;</button></div>
 				</div>
 			</div>
 			<div id="column2">
@@ -60,7 +76,7 @@ function ForecastDayInfo({fetchData, index}) {
 function CurrentDayInfo({fetchData}) {
 	const timestamp = fetchData.current.last_updated;
 	const date = new Date (timestamp);
-	const dateTime = `${date.getHours()}:${date.getMinutes()}`;
+	const dateTime = `${date.getHours()}:${date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes()}`;
 
 	const humidity = fetchData.current.humidity;
 	const temp = fetchData.current.temp_c;
@@ -70,17 +86,20 @@ function CurrentDayInfo({fetchData}) {
 
 	const rep = /64x64/gi;
 	const resizedIcon = icon.replace(rep, "128x128");
-
 	return(
 		<>
 			<div className="current-location">{location}</div>
 			<div className="current-time opacity-medium">{dateTime}</div>
 			<div className="current-icon">
 				<img className="icon-img glow" src={resizedIcon} alt="Weather Icon"/>
-				<div className="current-description">{description}</div>
 			</div>
-			<div className="current-humidity opacity-medium">HDM {humidity}</div>
+			<div className="current-description">{description}</div>
+			<div className="current-humidity opacity-medium">HMD {humidity}%</div>
 			<div className="current-temp opacity-medium">{Math.round(temp)}°C</div>
 		</>
 	)
 }
+
+// function PrecipitationPossibility {
+	
+// }

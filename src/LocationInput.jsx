@@ -12,7 +12,7 @@ export default function LocationInput({setLocation}) {
 			>
 
 			</input>
-			<button onClick={() => setLocation(search)}>Submit</button>
+			<button className="search-button" onClick={() => setLocation(search)}>Submit</button>
 		</>
 	)
 }
