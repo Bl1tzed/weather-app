@@ -9,7 +9,7 @@ export default function WeatherInformation({ fetchData }) {
 		<>
 			<div id="column1">
 				<div id="column1-header">{fetchData.location.name}</div>
-				<div id="column1-wrapper">
+				<div id="column1-content">
 					<div></div>
 					<div></div>
 					<div></div>
