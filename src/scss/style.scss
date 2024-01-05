@@ -154,21 +154,21 @@ button:hover {
   grid-template-columns: 12rem 6.8rem;
   grid-template-rows: 3rem 13rem 5rem 3rem min-content;
   grid-template-areas:
-    "cur-location cur-time"
+    "top-left top-right"
     "cur-img cur-img"
-    "cur-desc cur-desc"
-    "cur-humidity cur-temp";
+    "under-text under-text"
+    "bottom-left bottom-right";
   background-color: $columnsBgColorBlack;
 }
 
 .current-location {
-  grid-area: cur-location;
+  grid-area: top-left;
   margin-left: 1rem;
   text-align: start;
 }
 
-.current-time {
-  grid-area: cur-time;
+.current-time, .wind-speed {
+  grid-area: top-right;
   margin-right: 1rem;
   text-align: end;
 }
@@ -180,14 +180,15 @@ button:hover {
   align-items: start;
 }
 
-.current-humidity {
-  grid-area: cur-humidity;
+.current-humidity, .sunrise {
+  grid-area: bottom-left;
   margin-left: 1rem;
   text-align: start;
 }
 
-.current-temp {
-  grid-area: cur-temp;
+
+.current-temp, .sunset {
+  grid-area: bottom-right;
   margin-right: 1rem;
   text-align: end;
 }
@@ -197,13 +198,24 @@ button:hover {
   width: 12.8rem;
 }
 
-.current-description {
-  grid-area: cur-desc;
+.current-description, .probability {
+  grid-area: under-text;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
 
+#column3 {
+  display: grid;
+  grid-template-columns: 11rem 7.8rem;
+  grid-template-rows: 3rem 13rem 5rem 3rem min-content;
+  grid-template-areas:
+  "top-left top-right"
+  "cur-img cur-img"
+  "under-text under-text"
+  "bottom-left bottom-right";
+  background-color: $columnsBgColorBlack;
+}
 // .weatherInformation {
 //   background-color: #043d4e;
 // }

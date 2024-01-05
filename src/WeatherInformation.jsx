@@ -36,7 +36,7 @@ export default function WeatherInformation({ fetchData }) {
 				<CurrentDayInfo fetchData={fetchData}/>
 			</div>
 			<div id="column3">
-			
+				<MiscComponent fetchData={fetchData}/>
 			</div>
 		</>
 	)
@@ -100,6 +100,39 @@ function CurrentDayInfo({fetchData}) {
 	)
 }
 
-// function PrecipitationPossibility {
-	
-// }
+function MiscComponent({fetchData}) {
+	const sunrise = timeConversion(fetchData.forecast.forecastday[0].astro.sunrise);
+	const sunset = timeConversion(fetchData.forecast.forecastday[0].astro.sunset);
+	const rainChance = fetchData.forecast.forecastday[0].day.daily_chance_of_rain;
+	const wind = fetchData.forecast.forecastday[0].day.maxwind_kph;
+	const icon = fetchData.forecast.forecastday[0].day.condition.icon;
+
+	const location = fetchData.location.name;
+
+	const rep = /64x64/gi;
+	const resizedIcon = icon.replace(rep, "128x128");
+	return(
+		<>
+			<div className="current-location">{location}</div>
+			<div className="wind-speed opacity-medium">{wind} km/h</div>
+			<div className="current-icon">
+				<img className="icon-img glow" src={resizedIcon} alt="Weather Icon"/>
+			</div>
+			<div className="probability">Precipitation {rainChance}%</div>
+			<div className="sunrise opacity-medium">Rise {sunrise}</div>
+			<div className="sunset opacity-medium">Set {sunset}</div>
+		</>
+	)
+}
+
+const timeConversion = (time) => {
+  const [timeWithoutPeriod, period] = time.split(" ");
+  let [hours, minutes] = timeWithoutPeriod.split(":");
+  if (period === "PM" && hours !== "12") {
+    hours = String(Number(hours) + 12);
+  }
+  if (period === "AM" && hours === "12") {
+    hours = "00";
+  }
+  return `${hours}:${minutes}`;
+};
