@@ -7,10 +7,11 @@ $borderColor: rgb(255 255 255 / 15%);
 $bgColor: rgb(0, 0, 0);
 $opacityColorMedium: rgb(255 255 255 / 50%);
 $opacityColorLow: rgb(255 255 255 / 35%);
+$fontColor: aliceblue;
+
 * {
   padding: 0;
   margin: 0;
-  color: aliceblue;
 }
 
 html {
@@ -21,22 +22,23 @@ body {
   background-color: $bgColor;
 }
 
-input {
-  height: 3.5rem;
-  width: 30rem;
-  color: gray;
-  border-radius: 5px;
-  border: none;
-}
+// input {
+//   height: 3.5rem;
+//   width: 30rem;
+//   color: gray;
+//   border-radius: 5px;
+//   border: none;
+// }
 
 .search-button {
   background-color: $columnsBgColor;
   border-radius: 5px;
   padding: 10px 20px;
-  text-decoration:none;
+  text-decoration: none;
   margin-left: 10px;
   box-sizing: border-box;
   border: none;
+  color: $fontColor;
 }
 
 button:hover {
@@ -44,11 +46,11 @@ button:hover {
 }
 
 #input-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  margin-top: 1rem;
+  margin: 20px auto;
+  max-width: 100rem;
+  color: gray;
+  font: 1.4rem "Century Gothic", Futura, sans-serif;
+  background-color: gray;
 }
 
 #content-box {
@@ -60,9 +62,12 @@ button:hover {
   column-gap: 15px;
   width: 100%;
   justify-content: center;
+  color: $fontColor;
 }
 
-#column1, #column2, #column3 {
+#column1,
+#column2,
+#column3 {
   border-radius: 5px;
   padding: 5px;
   border-radius: 1.6rem;
@@ -94,8 +99,8 @@ button:hover {
 
 #column1-content {
   display: grid;
-  grid-template-columns: 1rem repeat(4, 1fr) 1rem;
-  column-gap: 0.5rem;
+  justify-content: center;
+  grid-template-columns: 1rem repeat(4, 13.5rem) 1rem;
 }
 
 #wrapper-content-box {
@@ -133,11 +138,11 @@ button:hover {
 }
 
 .opacity-medium {
-  color: $opacityColorMedium
+  color: $opacityColorMedium;
 }
 
 .opacity-low {
-  color: $opacityColorLow
+  color: $opacityColorLow;
 }
 
 .mintemp::after {
@@ -167,7 +172,8 @@ button:hover {
   text-align: start;
 }
 
-.current-time, .wind-speed {
+.current-time,
+.wind-speed {
   grid-area: top-right;
   margin-right: 1rem;
   text-align: end;
@@ -180,14 +186,15 @@ button:hover {
   align-items: start;
 }
 
-.current-humidity, .sunrise {
+.current-humidity,
+.sunrise {
   grid-area: bottom-left;
   margin-left: 1rem;
   text-align: start;
 }
 
-
-.current-temp, .sunset {
+.current-temp,
+.sunset {
   grid-area: bottom-right;
   margin-right: 1rem;
   text-align: end;
@@ -198,7 +205,8 @@ button:hover {
   width: 12.8rem;
 }
 
-.current-description, .probability {
+.current-description,
+.probability {
   grid-area: under-text;
   display: flex;
   align-items: flex-start;
@@ -210,10 +218,10 @@ button:hover {
   grid-template-columns: 11rem 7.8rem;
   grid-template-rows: 3rem 13rem 5rem 3rem min-content;
   grid-template-areas:
-  "top-left top-right"
-  "cur-img cur-img"
-  "under-text under-text"
-  "bottom-left bottom-right";
+    "top-left top-right"
+    "cur-img cur-img"
+    "under-text under-text"
+    "bottom-left bottom-right";
   background-color: $columnsBgColorBlack;
 }
 // .weatherInformation {
