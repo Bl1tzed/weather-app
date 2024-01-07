@@ -1,0 +1,51 @@
+@import "variables.scss";
+
+.main {
+  display: grid;
+  grid-template-columns: 9.4rem 9.4rem;
+  grid-template-rows: 1.5rem 2rem 13rem 5rem 3rem min-content;
+  grid-template-areas:
+    "location location"
+    "top-info top-info"
+    "cur-img cur-img"
+    "under-text under-text"
+    "bottom-left bottom-right";
+  background-color: $columnsBgColorBlack;
+}
+
+.location {
+  grid-area: location;
+  text-align: center;
+}
+
+.subHeader {
+  margin-top: 0.5rem;
+  grid-area: top-info;
+  text-align: center;
+}
+
+.iconBox {
+  grid-area: cur-img;
+  display: grid;
+  justify-content: center;
+  align-items: start;
+}
+
+.title {
+  grid-area: under-text;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.bottomLeft {
+  grid-area: bottom-left;
+  margin-left: 1rem;
+  text-align: start;
+}
+
+.bottomRight {
+  grid-area: bottom-right;
+  margin-right: 1rem;
+  text-align: end;
+}

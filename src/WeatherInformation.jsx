@@ -1,182 +1,31 @@
-import { useState } from "react";
+import ForecastByDay from "./ForecastByDay";
+import CurrentDayInfo from "./CurrentDayInfo";
+import MiscComponent from "./MiscComponent";
+import ForecastByHour from "./ForecastByHour";
 
 export default function WeatherInformation({ fetchData }) {
-  const [lastCardIndex, setLastCardIndex] = useState(3);
-
   if (!fetchData) return null;
   if (!fetchData.location) return "Incorrect city";
 
-  const forecastDays = [
-    lastCardIndex - 3,
-    lastCardIndex - 2,
-    lastCardIndex - 1,
-    lastCardIndex,
-  ];
-
-  function handlePrevClick() {
-    if (lastCardIndex > 3) {
-      setLastCardIndex(lastCardIndex - 1);
-    }
-  }
-
-  function handleNextClick() {
-    if (lastCardIndex < 6) {
-      setLastCardIndex(lastCardIndex + 1);
-    }
-  }
-
   return (
-    <div id="content-box">
-      <div id="column1">
-        <div id="column1-header">
-          {fetchData.location.name}, {fetchData.location.country}
-        </div>
-        <div id="column1-content">
-          <div className="button-wrapper">
-            <button className="slide-button" onClick={handlePrevClick}>
-              &lt;
-            </button>
-          </div>
-          {forecastDays.map((index) => {
-            return (
-              <div key={index} className="forecast-day">
-                <ForecastDayInfo index={index} fetchData={fetchData} />
-              </div>
-            );
-          })}
-          <div className="button-wrapper">
-            <button className="slide-button" onClick={handleNextClick}>
-              &gt;
-            </button>
-          </div>
-        </div>
-      </div>
-      <div id="column2">
-        <CurrentDayInfo fetchData={fetchData} />
-      </div>
-      <div id="column3">
-        <MiscComponent fetchData={fetchData} />
-      </div>
+    <div className="content-box">
+      <ForecastByDay
+        fetchData={fetchData}
+        getWeatherIconURL={getWeatherIconURL}
+      />
+      <CurrentDayInfo
+        fetchData={fetchData}
+        getWeatherIconURL={getWeatherIconURL}
+      />
+      <MiscComponent
+        fetchData={fetchData}
+        getWeatherIconURL={getWeatherIconURL}
+      />
+      <ForecastByHour />
     </div>
   );
 }
 
-function ForecastDayInfo({ fetchData, index }) {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const FD = fetchData.forecast.forecastday[index];
-
-  const timestamp = FD.date;
-  const date = new Date(timestamp);
-  const dateDay = date.getDate();
-  const dateWeekDay = date.toLocaleString("en-us", { weekday: "long" });
-  const dateMonth = months[date.getMonth()];
-
-  const humidity = FD.day.avghumidity;
-  const dayTemp = FD.hour[16].temp_c;
-  const nightTemp = FD.day.mintemp_c;
-  const description = FD.day.condition.text;
-  const icon = getWeatherIconURL(FD.day);
-
-  return (
-    <>
-      <div className="forecast-info">{dateWeekDay}</div>
-      <div className="forecast-info opacity-low">
-        {dateDay} {dateMonth}
-      </div>
-      <div className="forecast-info">
-        <img src={icon} alt="Weather Icon" />
-      </div>
-      <div className="forecast-info">{description}</div>
-      <div className="forecast-info">
-        <div className="mintemp opacity-medium">{Math.round(nightTemp)}°C</div>
-        <div>{Math.round(dayTemp)}°C</div>
-      </div>
-      <div className="forecast-info opacity-medium"> HMD {humidity}%</div>
-    </>
-  );
-}
-
-function CurrentDayInfo({ fetchData }) {
-  const FD = fetchData.current;
-
-  const timestamp = FD.last_updated;
-  const date = new Date(timestamp);
-  const dateTime = `${date.getHours()}:${
-    date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
-  }`;
-
-  const location = fetchData.location.name;
-  const humidity = FD.humidity;
-  const temp = FD.temp_c;
-  const description = FD.condition.text;
-  const icon = getWeatherIconURL(FD);
-
-  return (
-    <>
-      <div className="current-location">{location}</div>
-      <div className="current-time opacity-medium">{dateTime}</div>
-      <div className="current-icon">
-        <img className="icon-img glow" src={icon} alt="Weather Icon" />
-      </div>
-      <div className="current-description">{description}</div>
-      <div className="current-humidity opacity-medium">HMD {humidity}%</div>
-      <div className="current-temp opacity-medium">{Math.round(temp)}°C</div>
-    </>
-  );
-}
-
-function MiscComponent({ fetchData }) {
-  const FD = fetchData.forecast.forecastday[0];
-
-  const sunrise = timeConversion(FD.astro.sunrise);
-  const sunset = timeConversion(FD.astro.sunset);
-
-  const rainChance = FD.day.daily_chance_of_rain;
-  const wind = FD.day.maxwind_kph;
-  const icon = getWeatherIconURL(FD.day);
-
-  const location = fetchData.location.name;
-
-  return (
-    <>
-      <div className="current-location">{location}</div>
-      <div className="wind-speed opacity-medium">{wind} km/h</div>
-      <div className="current-icon">
-        <img className="icon-img glow" src={icon} alt="Weather Icon" />
-      </div>
-      <div className="probability">Precipitation {rainChance}%</div>
-      <div className="sunrise opacity-medium">Rise {sunrise}</div>
-      <div className="sunset opacity-medium">Set {sunset}</div>
-    </>
-  );
-}
-
-const timeConversion = (time) => {
-  const [timeWithoutPeriod, period] = time.split(" ");
-  let [hours, minutes] = timeWithoutPeriod.split(":");
-  if (period === "PM" && hours !== "12") {
-    hours = String(Number(hours) + 12);
-  }
-  if (period === "AM" && hours === "12") {
-    hours = "00";
-  }
-  return `${hours}:${minutes}`;
-};
-//eslint-disable-next-line no-unused-vars
 function getWeatherIconURL(FD) {
   const urlBase = "/svg/";
   const extension = ".svg";

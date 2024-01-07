@@ -1,4 +1,3 @@
-// SAAS, CSS Modules
 // Error Boundary
 
 import { useState, useEffect } from "react";
@@ -40,7 +39,7 @@ export default function App() {
 
   return (
     <>
-      <LocationInput className="inputBox" setLocation={setLocation} />
+      <LocationInput setLocation={setLocation} />
       <WeatherInformation fetchData={fetchData} />
     </>
   );

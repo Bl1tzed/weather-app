@@ -1,13 +1,4 @@
-//Css modules
-//https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/
-
-$columnsBgColor: rgb(29, 40, 55);
-$columnsBgColorBlack: rgb(18, 18, 18);
-$borderColor: rgb(255 255 255 / 15%);
-$bgColor: rgb(0, 0, 0);
-$opacityColorMedium: rgb(255 255 255 / 50%);
-$opacityColorLow: rgb(255 255 255 / 35%);
-$fontColor: aliceblue;
+@import "variables.scss";
 
 * {
   padding: 0;
@@ -25,125 +16,37 @@ body {
 input {
   width: 95rem !important;
 }
-// input {
-//   height: 3.5rem;
-//   width: 30rem;
-//   color: gray;
-//   border-radius: 5px;
-//   border: none;
-// }
-
-.search-button {
-  background-color: $columnsBgColor;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-decoration: none;
-  margin-left: 10px;
-  box-sizing: border-box;
-  border: none;
-  color: $fontColor;
-}
 
 button:hover {
   cursor: pointer;
 }
 
-#input-box {
+.input-box {
   margin: 20px auto;
-  max-width: 100rem;
+  max-width: 80rem;
   color: gray;
-  font:
-    1.4rem "Century Gothic",
-    Futura,
-    sans-serif;
+  font: $font;
   background-color: gray;
 }
 
-#content-box {
-  font:
-    1.4rem "Century Gothic",
-    Futura,
-    sans-serif;
+.content-box {
+  font: $font;
   font-weight: 600;
   display: grid;
   grid-template-columns: 65rem 20rem 20rem;
-  grid-template-rows: 25rem;
-  column-gap: 15px;
+  grid-template-rows: 25rem 25rem;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
   width: 100%;
   justify-content: center;
   color: $fontColor;
 }
 
-#column1,
-#column2,
-#column3 {
+.column {
   border-radius: 5px;
   padding: 5px;
   border-radius: 1.6rem;
   border: 1px solid $borderColor;
-  background-color: $columnsBgColor;
-}
-
-#column1 {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-auto-rows: min-content;
-}
-
-#column1-header {
-  font-size: 1.8rem;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-}
-
-#column1-header::after {
-  content: "";
-  margin-top: 0.5rem;
-  width: 100%;
-  height: 1px;
-  background-color: $borderColor;
-}
-
-#column1-content {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 1rem repeat(4, 15rem) 1rem;
-}
-
-#wrapper-content-box {
-  display: flex;
-  justify-content: center;
-}
-
-.button-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide-button {
-  font-size: 2rem;
-  font-weight: 700;
-  border: none;
-  color: $opacityColorMedium;
-  background: none;
-  padding: 0.8rem;
-}
-
-.forecast-day {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-rows: 2rem 2.4rem 6.4rem 4.4rem 2.4rem 2.4rem;
-  width: 14rem;
-  justify-content: center;
-}
-
-.forecast-info {
-  display: flex;
-  justify-content: center;
-  text-align: center;
 }
 
 .opacity-medium {
@@ -154,85 +57,11 @@ button:hover {
   color: $opacityColorLow;
 }
 
-.mintemp::after {
-  content: "|";
-  margin: 0 5px;
-}
-
 .glow {
   filter: drop-shadow(0 0 1rem rgb(156, 156, 156));
-}
-
-#column2 {
-  display: grid;
-  grid-template-columns: 12rem 6.8rem;
-  grid-template-rows: 3rem 13rem 5rem 3rem min-content;
-  grid-template-areas:
-    "top-left top-right"
-    "cur-img cur-img"
-    "under-text under-text"
-    "bottom-left bottom-right";
-  background-color: $columnsBgColorBlack;
-}
-
-.current-location {
-  grid-area: top-left;
-  margin-left: 1rem;
-  text-align: start;
-}
-
-.current-time,
-.wind-speed {
-  grid-area: top-right;
-  margin-right: 1rem;
-  text-align: end;
-}
-
-.current-icon {
-  grid-area: cur-img;
-  display: grid;
-  justify-content: center;
-  align-items: start;
-}
-
-.current-humidity,
-.sunrise {
-  grid-area: bottom-left;
-  margin-left: 1rem;
-  text-align: start;
-}
-
-.current-temp,
-.sunset {
-  grid-area: bottom-right;
-  margin-right: 1rem;
-  text-align: end;
 }
 
 .icon-img {
   height: 12.8rem;
   width: 12.8rem;
 }
-
-.current-description,
-.probability {
-  grid-area: under-text;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-#column3 {
-  display: grid;
-  grid-template-columns: 11rem 7.8rem;
-  grid-template-rows: 3rem 13rem 5rem 3rem min-content;
-  grid-template-areas:
-    "top-left top-right"
-    "cur-img cur-img"
-    "under-text under-text"
-    "bottom-left bottom-right";
-  background-color: $columnsBgColorBlack;
-}
-// .weatherInformation {
-//   background-color: #043d4e;
-// }

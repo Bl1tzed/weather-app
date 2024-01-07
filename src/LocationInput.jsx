@@ -38,20 +38,15 @@ export default function LocationInput({ setLocation }) {
   };
 
   return (
-    <>
-      <div id="input-box">
-        <AsyncPaginate
-          placeholder="Search for city"
-          debounceTimeout={600}
-          value={search}
-          onChange={handleOnChange}
-          loadOptions={loadOptions}
-          loadOptionsOnMenuOpen={false}
-        />
-      </div>
-      {/* <button className="search-button" onClick={() => setLocation(search)}>
-        Submit
-      </button> */}
-    </>
+    <div className="input-box">
+      <AsyncPaginate
+        placeholder="Search for city"
+        debounceTimeout={600}
+        value={search}
+        onChange={handleOnChange}
+        loadOptions={loadOptions}
+        loadOptionsOnMenuOpen={false}
+      />
+    </div>
   );
 }
