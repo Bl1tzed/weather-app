@@ -22,6 +22,9 @@ body {
   background-color: $bgColor;
 }
 
+input {
+  width: 95rem !important;
+}
 // input {
 //   height: 3.5rem;
 //   width: 30rem;
@@ -49,15 +52,21 @@ button:hover {
   margin: 20px auto;
   max-width: 100rem;
   color: gray;
-  font: 1.4rem "Century Gothic", Futura, sans-serif;
+  font:
+    1.4rem "Century Gothic",
+    Futura,
+    sans-serif;
   background-color: gray;
 }
 
 #content-box {
-  font: 1.4rem "Century Gothic", Futura, sans-serif;
+  font:
+    1.4rem "Century Gothic",
+    Futura,
+    sans-serif;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 60rem 20rem 20rem;
+  grid-template-columns: 65rem 20rem 20rem;
   grid-template-rows: 25rem;
   column-gap: 15px;
   width: 100%;
@@ -100,7 +109,7 @@ button:hover {
 #column1-content {
   display: grid;
   justify-content: center;
-  grid-template-columns: 1rem repeat(4, 13.5rem) 1rem;
+  grid-template-columns: 1rem repeat(4, 15rem) 1rem;
 }
 
 #wrapper-content-box {
@@ -127,7 +136,7 @@ button:hover {
   margin-top: 1rem;
   display: grid;
   grid-template-rows: 2rem 2.4rem 6.4rem 4.4rem 2.4rem 2.4rem;
-  width: 12rem;
+  width: 14rem;
   justify-content: center;
 }
 

@@ -1,7 +1,7 @@
 //import T from 'prop-types'
 import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
-//eslint-disable-next-line react/prop-types
+
 export default function LocationInput({ setLocation }) {
   const [search, setSearch] = useState("");
 
@@ -15,8 +15,10 @@ export default function LocationInput({ setLocation }) {
   };
 
   const loadOptions = (inputValue) => {
-    //eslint-disable-next-line no-undef
     const key = process.env.REACT_APP_API_KEY;
+
+    if (!key) return;
+
     return fetch(
       `http://api.weatherapi.com/v1/search.json?key=${key}&q=${inputValue}}`,
       options
@@ -44,6 +46,7 @@ export default function LocationInput({ setLocation }) {
           value={search}
           onChange={handleOnChange}
           loadOptions={loadOptions}
+          loadOptionsOnMenuOpen={false}
         />
       </div>
       {/* <button className="search-button" onClick={() => setLocation(search)}>
