@@ -11,7 +11,9 @@ export default function App() {
 
   useEffect(() => {
     const key = process.env.REACT_APP_API_KEY;
-
+    const searchParams = new URLSearchParams(document.location.search);
+    const qlocation = searchParams.get("q");
+    console.log(qlocation);
     if (!key) return;
 
     const fetchingData = async (location) => {
@@ -19,7 +21,7 @@ export default function App() {
         const response = await fetch(
           url +
             new URLSearchParams({
-              q: location.value,
+              q: location,
               key: key,
               days: 7,
               aqi: "no",
@@ -32,10 +34,11 @@ export default function App() {
         console.error("Error fetching data:", error);
       }
     };
-    if (location != null) {
-      fetchingData(location);
-    }
+    if (qlocation) fetchingData(qlocation);
+    if (location != null) fetchingData(location.value);
   }, [location]);
+
+  useEffect(() => {}, []);
 
   return (
     <>

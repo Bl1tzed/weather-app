@@ -12,6 +12,7 @@ export default function LocationInput({ setLocation }) {
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     setLocation(searchData);
+    history.pushState({}, undefined, `?q=${searchData.urlParam}`);
   };
 
   const loadOptions = (inputValue) => {
@@ -30,6 +31,7 @@ export default function LocationInput({ setLocation }) {
             return {
               value: `${city.name} ${city.country}`,
               label: `${city.name}, ${city.country}`,
+              urlParam: city.name,
             };
           }),
         };
