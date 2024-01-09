@@ -21,7 +21,10 @@ export default function WeatherInformation({ fetchData }) {
         fetchData={fetchData}
         getWeatherIconURL={getWeatherIconURL}
       />
-      <ForecastByHour />
+      <ForecastByHour
+        fetchData={fetchData}
+        getWeatherIconURL={getWeatherIconURL}
+      />
     </div>
   );
 }
