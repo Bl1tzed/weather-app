@@ -48,6 +48,7 @@ export default function LocationInput({ setLocation }) {
         onChange={handleOnChange}
         loadOptions={loadOptions}
         loadOptionsOnMenuOpen={false}
+        autoFocus
       />
     </div>
   );
