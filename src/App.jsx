@@ -8,12 +8,11 @@ export default function App() {
   const [location, setLocation] = useState(null);
   const [fetchData, setFetchData] = useState(null);
   const url = "http://api.weatherapi.com/v1/forecast.json?";
-  console.log(fetchData);
+
   useEffect(() => {
     const key = process.env.REACT_APP_API_KEY;
     const searchParams = new URLSearchParams(document.location.search);
     const qlocation = searchParams.get("q");
-    console.log(qlocation);
 
     if (!key) return;
 
@@ -39,8 +38,6 @@ export default function App() {
 
     if (location != null) fetchingData(location.value);
   }, [location]);
-
-  useEffect(() => {}, []);
 
   return (
     <>

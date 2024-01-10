@@ -92,6 +92,7 @@ function getWeatherIconURL(FD) {
     1249: fn("partly-cloudy-night-sleet", "partly-cloudy-day-sleet", "sleet"),
     1252: fn("partly-cloudy-night-sleet", "partly-cloudy-day-sleet", "sleet"),
     1255: fn("partly-cloudy-night-snow", "partly-cloudy-day-snow", "snow"),
+    1258: fn("partly-cloudy-night-snow", "partly-cloudy-day-snow", "snow"),
     1261: fn("partly-cloudy-night-snow", "partly-cloudy-day-snow", "snow"),
     1264: fn("partly-cloudy-night-snow", "partly-cloudy-day-snow", "snow"),
     1273: fn(

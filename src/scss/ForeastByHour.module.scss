@@ -26,28 +26,28 @@ header {
 }
 
 .btn {
-  box-sizing: border-box;
-  margin-top: 0.5rem;
-  font-size: 1.8rem;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  color: $opacityColorMedium;
   background: none;
-  padding: 0.5rem;
-  &:hover {
-    background-color: rgb(0 0 0 / 25%);
-  }
   background-color: transparent;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   transition: background-color 0.2s ease-out;
+  padding: 0.5rem;
+  // &:hover {
+  //   background-color: rgb(0 0 0 / 25%);
+  // }
 }
 
 .headerLabel {
-  display: flex;
+  display: grid;
   width: 100%;
+  grid-template-columns: 2rem 16rem 2rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .headerText {
@@ -63,16 +63,19 @@ header {
 .hour {
   margin-top: 1rem;
   display: grid;
-  grid-template-rows: 4.4rem 6.4rem 4.4rem 4.8rem;
-  width: 14rem;
+  grid-template-rows: 2rem 10rem 2rem;
   justify-content: center;
   text-align: center;
 }
 
 .content {
   display: grid;
-  grid-template-columns: repeat(8, 13rem);
+  grid-template-columns: repeat(12, 8.4rem) 4.8rem;
   justify-content: center;
+}
+
+.weatherIcon {
+  width: 70%;
 }
 
 .temp {
@@ -81,4 +84,22 @@ header {
 
 .time {
   font-size: 1.6rem;
+}
+
+.weatherMode {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  margin-top: 0.5rem;
+}
+
+.weatherModeBtn {
+  border: none;
+  background: none;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease-out;
+  padding: 0.2rem;
+  &:hover {
+    background-color: rgb(0 0 0 / 25%);
+  }
 }

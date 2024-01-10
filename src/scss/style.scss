@@ -34,12 +34,22 @@ button:hover {
   font-weight: 600;
   display: grid;
   grid-template-columns: 65rem 20rem 20rem;
-  grid-template-rows: 25rem 25rem;
+  grid-template-rows: 25rem 21.5rem;
   column-gap: 1.5rem;
   row-gap: 1.5rem;
   width: 100%;
   justify-content: center;
   color: $fontColor;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .column {
@@ -64,4 +74,9 @@ button:hover {
 .icon-img {
   height: 12.8rem;
   width: 12.8rem;
+}
+
+.btnIcon {
+  width: 2rem;
+  height: 2rem;
 }

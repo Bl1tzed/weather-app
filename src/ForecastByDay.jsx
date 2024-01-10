@@ -31,7 +31,7 @@ export default function ForecastByDay({ fetchData, getWeatherIconURL }) {
       <div className={styles.content}>
         <div className={styles.btnWrap}>
           <button className={styles.btn} onClick={handlePrevClick}>
-            &lt;
+            <img src="svg/lt.svg" className="btnIcon"></img>
           </button>
         </div>
         {forecastDays.map((index) => {
@@ -47,7 +47,7 @@ export default function ForecastByDay({ fetchData, getWeatherIconURL }) {
         })}
         <div className={styles.btnWrap}>
           <button className={styles.btn} onClick={handleNextClick}>
-            &gt;
+            <img src="svg/gt.svg" className="btnIcon"></img>
           </button>
         </div>
       </div>

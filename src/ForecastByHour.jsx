@@ -2,8 +2,9 @@ import styles from "scss/ForeastByHour.module.scss";
 import { useState } from "react";
 export default function ForecastByHour({ fetchData, getWeatherIconURL }) {
   const [dayIndex, setDayIndex] = useState(0);
-  const hourIndex = [0, 3, 6, 9, 12, 15, 18, 21];
 
+  const [weatherMode, setWeatherMode] = useState("temp");
+  const hourIndex = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
   const FD = fetchData.forecast.forecastday[dayIndex];
   const months = [
     "January",
@@ -19,8 +20,8 @@ export default function ForecastByHour({ fetchData, getWeatherIconURL }) {
     "November",
     "December",
   ];
-  const date = new Date(FD.date);
 
+  const date = new Date(FD.date);
   function handlePrevClick() {
     if (dayIndex > 0) {
       setDayIndex(dayIndex - 1);
@@ -39,7 +40,7 @@ export default function ForecastByHour({ fetchData, getWeatherIconURL }) {
         <div className={styles.headerLabel}>
           <div className={styles.btnWrap}>
             <button className={styles.btn} onClick={handlePrevClick}>
-              &lt;
+              <img src="svg/lt.svg" className="btnIcon"></img>
             </button>
           </div>
           <div className={styles.headerText}>
@@ -47,7 +48,7 @@ export default function ForecastByHour({ fetchData, getWeatherIconURL }) {
           </div>
           <div className={styles.btnWrap}>
             <button className={styles.btn} onClick={handleNextClick}>
-              &gt;
+              <img src="svg/gt.svg" className="btnIcon"></img>
             </button>
           </div>
         </div>
@@ -59,30 +60,64 @@ export default function ForecastByHour({ fetchData, getWeatherIconURL }) {
               <ForecastHourInfo
                 fetchData={fetchData.forecast.forecastday[dayIndex].hour[index]}
                 getWeatherIconURL={getWeatherIconURL}
+                weatherMode={weatherMode}
               />
             </div>
           );
         })}
+        <div className={styles.weatherMode}>
+          <button
+            className={styles.weatherModeBtn}
+            onClick={() => setWeatherMode("temp")}
+          >
+            <img
+              src="svg/thermometer-celsius.svg"
+              className={styles.weatherModeIcon}
+            ></img>
+          </button>
+          <button
+            className={styles.weatherModeBtn}
+            onClick={() => setWeatherMode("hmd")}
+          >
+            <img
+              src="svg/humidity.svg"
+              className={styles.weatherModeIcon}
+            ></img>
+          </button>
+          <button
+            className={styles.weatherModeBtn}
+            onClick={() => setWeatherMode("wind")}
+          >
+            <img src="svg/tornado.svg" className={styles.weatherModeIcon}></img>
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
-function ForecastHourInfo({ fetchData, getWeatherIconURL }) {
+function ForecastHourInfo({ fetchData, getWeatherIconURL, weatherMode }) {
   const date = new Date(fetchData.time);
   const hourTime = `${date.getHours()}:${
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
   }`;
-
+  const weatherModeText = {
+    temp: `${Math.round(fetchData.temp_c)}°C`,
+    hmd: `${fetchData.humidity}%`,
+    wind: `${Math.round(fetchData.wind_kph)} kmh`,
+  };
   return (
     <>
       <div className={styles.time}>{hourTime}</div>
       <div className={styles.info}>
-        <img src={getWeatherIconURL(fetchData)} alt="Weather Icon" />
+        <img
+          className={styles.weatherIcon}
+          src={getWeatherIconURL(fetchData)}
+          alt="Weather Icon"
+        />
       </div>
-      <div>{fetchData.condition.text}</div>
       <div className={styles.info}>
-        <div className={styles.temp}>{Math.round(fetchData.temp_c)}°C</div>
+        <div className={styles.temp}>{weatherModeText[weatherMode]}</div>
       </div>
     </>
   );
