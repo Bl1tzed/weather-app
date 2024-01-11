@@ -3,15 +3,20 @@ import CurrentDayInfo from "./CurrentDayInfo";
 import MiscComponent from "./MiscComponent";
 import ForecastByHour from "./ForecastByHour";
 
+import { useState } from "react";
+
 export default function WeatherInformation({ fetchData }) {
+  const [dayRef, setDayRef] = useState(0);
+
   if (!fetchData) return null;
   if (!fetchData.location) return "Incorrect city";
-
+  console.log(dayRef);
   return (
     <div className="content-box">
       <ForecastByDay
         fetchData={fetchData}
         getWeatherIconURL={getWeatherIconURL}
+        setDayRef={setDayRef}
       />
       <CurrentDayInfo
         fetchData={fetchData}
@@ -24,6 +29,8 @@ export default function WeatherInformation({ fetchData }) {
       <ForecastByHour
         fetchData={fetchData}
         getWeatherIconURL={getWeatherIconURL}
+        dayRef={dayRef}
+        setDayRef={setDayRef}
       />
     </div>
   );

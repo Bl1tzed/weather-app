@@ -1,5 +1,7 @@
 @import "variables.scss";
 
+// Framer motion
+
 header {
   display: flex;
   justify-content: center;
@@ -35,9 +37,13 @@ header {
   border-radius: 0.5rem;
   transition: background-color 0.2s ease-out;
   padding: 0.5rem;
-  // &:hover {
-  //   background-color: rgb(0 0 0 / 25%);
-  // }
+  &:hover {
+    background-color: rgb(0 0 0 / 25%);
+  }
+}
+
+.weatherMode .active {
+  background-color: rgb(0 0 0 / 25%);
 }
 
 .headerLabel {
@@ -53,6 +59,7 @@ header {
 .headerText {
   font-size: 2rem;
   padding: 0.5rem;
+  animation: fadeOut 1s;
 }
 
 .info {
@@ -66,6 +73,7 @@ header {
   grid-template-rows: 2rem 10rem 2rem;
   justify-content: center;
   text-align: center;
+  animation: fadeOut 1s;
 }
 
 .content {
@@ -80,6 +88,16 @@ header {
 
 .temp {
   font-size: 1.6rem;
+  animation: fadeOut 1s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .time {
@@ -89,6 +107,7 @@ header {
 .weatherMode {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 0.5rem;
   margin-top: 0.5rem;
 }
 

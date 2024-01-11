@@ -1,9 +1,12 @@
 import { useState } from "react";
 import styles from "scss/ForecastByDay.module.scss";
 
-export default function ForecastByDay({ fetchData, getWeatherIconURL }) {
+export default function ForecastByDay({
+  fetchData,
+  getWeatherIconURL,
+  setDayRef,
+}) {
   const [lastCardIndex, setLastCardIndex] = useState(3);
-
   const forecastDays = [
     lastCardIndex - 3,
     lastCardIndex - 2,
@@ -22,7 +25,6 @@ export default function ForecastByDay({ fetchData, getWeatherIconURL }) {
       setLastCardIndex(lastCardIndex + 1);
     }
   }
-
   return (
     <div className={styles.main + " column"}>
       <div className={styles.header}>
@@ -36,7 +38,11 @@ export default function ForecastByDay({ fetchData, getWeatherIconURL }) {
         </div>
         {forecastDays.map((index) => {
           return (
-            <div key={index} className={styles.day}>
+            <div
+              key={index}
+              className={styles.day}
+              onClick={() => setDayRef(index)}
+            >
               <ForecastDayInfo
                 index={index}
                 fetchData={fetchData}
