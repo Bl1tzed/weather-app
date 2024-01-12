@@ -10,7 +10,6 @@ export default function WeatherInformation({ fetchData }) {
 
   if (!fetchData) return null;
   if (!fetchData.location) return "Incorrect city";
-  console.log(dayRef);
   return (
     <div className="content-box">
       <ForecastByDay

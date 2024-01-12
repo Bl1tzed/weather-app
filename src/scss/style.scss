@@ -13,21 +13,17 @@ body {
   background-color: $bgColor;
 }
 
-input {
-  width: 95rem !important;
-}
-
 button:hover {
   cursor: pointer;
 }
 
-.input-box {
-  margin: 20px auto;
-  max-width: 80rem;
-  color: gray;
-  font: $font;
-  background-color: gray;
-}
+// .input-box {
+//   margin: 20px auto;
+//   max-width: 80rem;
+//   color: gray;
+//   font: $font;
+//   background-color: gray;
+// }
 
 .content-box {
   font: $font;
