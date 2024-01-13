@@ -1,79 +1,87 @@
-//import T from 'prop-types'
-import { useState } from "react";
+// a11y Accessability w3c
+
+import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import styles from "scss/LocationInput.module.scss";
-// import { AsyncPaginate } from "react-select-async-paginate";
-//eslint-disable-next-line no-unused-vars
+
 export default function LocationInput({ setLocation }) {
   const [search, setSearch] = useState("");
+  const [results, setResult] = useState([]);
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      const key = process.env.REACT_APP_API_KEY;
+      if (!key) return;
+      return fetch(
+        `http://api.weatherapi.com/v1/search.json?key=${key}&q=${search}}`
+      )
+        .then((response) => response.json())
+        .then((response) =>
+          setResult(
+            response.map((city) => ({
+              value: `${city.name} ${city.country}`,
+              label: `${city.name}, ${city.country}`,
+              urlParam: city.name,
+            }))
+          )
+        )
+        .catch((err) => console.error(err));
+    }, 1000);
+    return () => clearTimeout(delayDebounceFn);
+  }, [search]);
 
-  // const options = {
-  //   method: "GET",
-  // };
+  function onOptionChoose(e, link, location) {
+    e.preventDefault();
+    history.pushState({}, undefined, `?q=${link}`);
+    setLocation(location);
+    setResult([]);
+    setSearch("");
+  }
 
-  const handleOnChange = debounce((searchData) => {
-    setSearch(searchData);
-    console.log("1");
-    history.pushState({}, undefined, `?q=${search}`);
-  }, 500);
+  function handleOnKeyDown(event) {
+    if (event.key === "Enter") {
+      onOptionChoose(event, results[0].value || search, results[0]);
+      event.target.blur();
+    }
+  }
 
-  // const loadOptions = (inputValue) => {
-  //   const key = process.env.REACT_APP_API_KEY;
-
-  //   if (!key) return;
-
-  //   return fetch(
-  //     `http://api.weatherapi.com/v1/search.json?key=${key}&q=${inputValue}}`,
-  //     options
-  //   )
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       return {
-  //         options: response.map((city) => {
-  //           return {
-  //             value: `${city.name} ${city.country}`,
-  //             label: `${city.name}, ${city.country}`,
-  //             urlParam: city.name,
-  //           };
-  //         }),
-  //       };
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+  const handleOnChange = (searchData) => {
+    setSearch(searchData.target.value);
+  };
 
   return (
     <div className={styles.inputBox}>
       <div className={styles.inputWrapper}>
         <FaSearch id="search-icon fa-4x" />
         <input
+          className={styles.inputField}
           type="text"
           placeholder="Type to search..."
-          onChange={(e) => handleOnChange(e.target.value)}
+          onChange={handleOnChange}
           value={search}
+          onKeyDown={handleOnKeyDown}
         />
+        {results.length ? (
+          <div className={styles.resultsList} key={results}>
+            {results.map((_, index) => {
+              const link = results[index].value
+                .replaceAll(" ", "_")
+                .toLowerCase();
+              return (
+                <a
+                  key={"search" + index}
+                  className={styles.searchResult}
+                  href={`/?q=${link}`}
+                  onClick={(e) => {
+                    onOptionChoose(e, link, results[index]);
+                  }}
+                >
+                  {results[index].label}
+                </a>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
-      <div>SearchResults</div>
-      {/* <AsyncPaginate
-        placeholder="Search for city"
-        debounceTimeout={600}
-        value={search}
-        onChange={handleOnChange}
-        loadOptions={loadOptions}
-        loadOptionsOnMenuOpen={false}
-        autoFocus
-      /> */}
     </div>
   );
 }
-
-const debounce = (fn, wait) => {
-  let timeout;
-  return (...args) => {
-    const later = () => {
-      clearTimeout(timeout);
-      fn(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setInterval(later, wait);
-  };
-};

@@ -1,5 +1,6 @@
 import styles from "scss/ForeastByHour.module.scss";
 import { useState, useEffect } from "react";
+
 export default function ForecastByHour({
   fetchData,
   getWeatherIconURL,
@@ -41,22 +42,29 @@ export default function ForecastByHour({
       setDayIndex(dayIndex + 1);
     }
   }
-
   return (
     <div className={styles.main + " column"}>
       <header>
         <div className={styles.headerLabel}>
           <div className={styles.btnWrap}>
-            <button className={styles.btn} onClick={handlePrevClick}>
-              <img src="svg/lt.svg" className="btnIcon"></img>
+            <button
+              className={styles.btn}
+              onClick={handlePrevClick}
+              aria-label="Previous day"
+            >
+              <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
             </button>
           </div>
           <div className={styles.headerText} key={date}>
             {date.getDate()} {months[date.getMonth()]}
           </div>
           <div className={styles.btnWrap}>
-            <button className={styles.btn} onClick={handleNextClick}>
-              <img src="svg/gt.svg" className="btnIcon"></img>
+            <button
+              className={styles.btn}
+              onClick={handleNextClick}
+              aria-label="Next day"
+            >
+              <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
             </button>
           </div>
         </div>

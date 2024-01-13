@@ -35,14 +35,16 @@ export default function App() {
       }
     };
     if (qlocation) fetchingData(qlocation);
-
     if (location != null) fetchingData(location.value);
   }, [location]);
 
   return (
     <>
       <LocationInput setLocation={setLocation} />
-      <WeatherInformation fetchData={fetchData} />
+      <WeatherInformation
+        fetchData={fetchData}
+        key={location && location.value}
+      />
     </>
   );
 }

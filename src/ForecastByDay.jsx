@@ -32,8 +32,12 @@ export default function ForecastByDay({
       </div>
       <div className={styles.content}>
         <div className={styles.btnWrap}>
-          <button className={styles.btn} onClick={handlePrevClick}>
-            <img src="svg/lt.svg" className="btnIcon"></img>
+          <button
+            className={styles.btn}
+            onClick={handlePrevClick}
+            aria-label="Previous day"
+          >
+            <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
           </button>
         </div>
         {forecastDays.map((index) => {
@@ -52,8 +56,12 @@ export default function ForecastByDay({
           );
         })}
         <div className={styles.btnWrap}>
-          <button className={styles.btn} onClick={handleNextClick}>
-            <img src="svg/gt.svg" className="btnIcon"></img>
+          <button
+            className={styles.btn}
+            onClick={handleNextClick}
+            aria-label="Next day"
+          >
+            <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
           </button>
         </div>
       </div>

@@ -1,12 +1,12 @@
 @import "variables.scss";
 
-#search-icon {
-  color: white;
-}
-
 svg {
+  color: #aaa;
   width: 2rem;
   height: 2rem;
+  z-index: 3;
+  position: absolute;
+  left: 2rem;
 }
 
 .inputBox {
@@ -16,31 +16,89 @@ svg {
   flex-direction: column;
   align-items: center;
   min-width: 20rem;
-  color: white;
+  max-width: 60rem;
+  color: $fontColor;
+  z-index: 2;
+  position: relative;
 }
 
 .inputWrapper {
   margin-top: 1rem;
-  background-color: #111;
   width: 100%;
-  border-radius: 1.5rem;
   height: 4rem;
-  padding: 0 2.5rem;
   display: flex;
   align-items: center;
-  border: 2px solid $borderColor;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
-input {
-  background-color: transparent;
-  color: white;
-  border: none;
+.inputField {
+  border: 2px solid $borderColor;
+  background-color: #111;
+  padding: 0 2.5rem;
+  padding-left: 5rem;
+  border-radius: 1.5rem;
+  color: $fontColor;
   height: 100%;
   width: 100%;
   font-size: 1.8rem;
-  margin-left: 0.5rem;
+  z-index: 2;
 }
 
-input:focus {
-  outline: none;
+.inputField:focus-within {
+  & + .resultsList {
+    opacity: 1;
+  }
+}
+
+.resultsList {
+  display: grid;
+  opacity: 0;
+  position: absolute;
+  top: 5.5rem;
+  left: 0;
+  font-size: 1.6rem;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: #111;
+  max-height: 30rem;
+  overflow-y: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid $borderColor;
+  z-index: 2;
+  transition: opacity 0.45s ease-out;
+  animation: fadeOut 0.45s;
+  box-shadow: 0 0 1rem black;
+}
+
+.searchResult {
+  padding: 1.2rem 2rem;
+  text-decoration: none;
+  color: $fontColor;
+  font: $font;
+  font-weight: 600;
+  &:hover {
+    background-color: #222;
+    cursor: pointer;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0 0 0 / 80%);
+  z-index: 1;
 }
