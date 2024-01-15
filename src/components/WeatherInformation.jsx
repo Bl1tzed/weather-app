@@ -2,8 +2,8 @@ import ForecastByDay from "./ForecastByDay";
 import CurrentDayInfo from "./CurrentDayInfo";
 import MiscComponent from "./MiscComponent";
 import ForecastByHour from "./ForecastByHour";
-import { FetchDataContext } from "../App";
 import { useContext, useState } from "react";
+import FetchDataContext from "context/FetchDataContext";
 
 export default function WeatherInformation() {
   const [dayRef, setDayRef] = useState(0);

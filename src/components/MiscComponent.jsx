@@ -1,4 +1,4 @@
-import { FetchDataContext } from "App";
+import FetchDataContext from "context/FetchDataContext";
 import SmallWeatherCard from "components/SmallWeatherCard";
 import { useContext } from "react";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";

@@ -1,4 +1,4 @@
-import { FetchDataContext } from "App";
+import FetchDataContext from "context/FetchDataContext";
 import { useContext, useState } from "react";
 import clsx from "clsx";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";

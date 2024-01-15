@@ -41,3 +41,5 @@ export function FetchDataProvider({ children, location }) {
     </FetchDataContext.Provider>
   );
 }
+
+export default FetchDataContext;

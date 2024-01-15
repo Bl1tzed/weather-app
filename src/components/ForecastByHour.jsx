@@ -1,7 +1,7 @@
 import styles from "styles/ForeastByHour.module.scss";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 import { useState, useEffect, useContext } from "react";
-import { FetchDataContext } from "App";
+import FetchDataContext from "context/FetchDataContext";
 import { getCorrectTime } from "utils/helpers";
 
 export default function ForecastByHour({ dayRef }) {

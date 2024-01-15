@@ -1,7 +1,7 @@
 import SmallWeatherCard from "components/SmallWeatherCard";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
+import FetchDataContext from "context/FetchDataContext";
 import { useContext } from "react";
-import { FetchDataContext } from "App";
 import { getCorrectTime } from "utils/helpers";
 
 export default function CurrentDayInfo() {
