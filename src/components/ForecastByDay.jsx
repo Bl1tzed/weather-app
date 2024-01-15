@@ -1,12 +1,12 @@
-import { useState } from "react";
-import styles from "scss/ForecastByDay.module.scss";
+import { FetchDataContext } from "App";
+import { useContext, useState } from "react";
+import clsx from "clsx";
+import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
+import styles from "styles/ForecastByDay.module.scss";
 
-export default function ForecastByDay({
-  fetchData,
-  getWeatherIconURL,
-  setDayRef,
-}) {
+export default function ForecastByDay({ setDayRef }) {
   const [lastCardIndex, setLastCardIndex] = useState(3);
+  const FD = useContext(FetchDataContext);
   const forecastDays = [
     lastCardIndex - 3,
     lastCardIndex - 2,
@@ -26,9 +26,9 @@ export default function ForecastByDay({
     }
   }
   return (
-    <div className={styles.main + " column"}>
+    <div className={clsx(styles.main, "column")}>
       <div className={styles.header}>
-        {fetchData.location.name}, {fetchData.location.country}
+        {FD.location.name}, {FD.location.country}
       </div>
       <div className={styles.content}>
         <div className={styles.btnWrap}>
@@ -47,11 +47,7 @@ export default function ForecastByDay({
               className={styles.day}
               onClick={() => setDayRef(index)}
             >
-              <ForecastDayInfo
-                index={index}
-                fetchData={fetchData}
-                getWeatherIconURL={getWeatherIconURL}
-              />
+              <ForecastDayInfo index={index} />
             </div>
           );
         })}
@@ -69,7 +65,7 @@ export default function ForecastByDay({
   );
 }
 
-function ForecastDayInfo({ fetchData, index, getWeatherIconURL }) {
+function ForecastDayInfo({ index }) {
   const months = [
     "January",
     "February",
@@ -84,6 +80,7 @@ function ForecastDayInfo({ fetchData, index, getWeatherIconURL }) {
     "November",
     "December",
   ];
+  const fetchData = useContext(FetchDataContext);
   const FD = fetchData.forecast.forecastday[index];
   const date = new Date(FD.date);
 

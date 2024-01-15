@@ -1,7 +1,7 @@
 @import "variables.scss";
 
 svg {
-  color: #aaa;
+  color: $searchColor;
   width: 2rem;
   height: 2rem;
   z-index: 3;
@@ -34,7 +34,7 @@ svg {
 
 .inputField {
   border: 2px solid $borderColor;
-  background-color: #111;
+  background-color: $inputBgColor;
   padding: 0 2.5rem;
   padding-left: 5rem;
   border-radius: 1.5rem;
@@ -49,6 +49,13 @@ svg {
   & + .resultsList {
     opacity: 1;
   }
+  border: 2px solid $inputBorderFocus;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+}
+.inputField:not(:focus-within) {
+  border: 2px solid $borderColor;
+  transition: border 0.3s ease-in-out;
 }
 
 .resultsList {
@@ -60,15 +67,14 @@ svg {
   font-size: 1.6rem;
   width: 100%;
   border-radius: 1rem;
-  background-color: #111;
+  background-color: $inputBgColor;
   max-height: 30rem;
   overflow-y: hidden;
   margin-bottom: 1rem;
-  border: 1px solid $borderColor;
   z-index: 2;
   transition: opacity 0.45s ease-out;
   animation: fadeOut 0.45s;
-  box-shadow: 0 0 1rem black;
+  box-shadow: 0 0 1rem $black;
 }
 
 .searchResult {
@@ -78,7 +84,7 @@ svg {
   font: $font;
   font-weight: 600;
   &:hover {
-    background-color: #222;
+    background-color: $inputBgColorHover;
     cursor: pointer;
   }
 }
@@ -90,15 +96,4 @@ svg {
   100% {
     opacity: 1;
   }
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0 0 0 / 80%);
-  z-index: 1;
 }

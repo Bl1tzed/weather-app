@@ -1,5 +1,7 @@
 @import "variables.scss";
 
+// No colors w/o vars
+
 .main {
   background-color: $columnsBgColor;
 }
@@ -26,7 +28,7 @@
   padding: 0.5rem;
   height: 95%;
   &:hover {
-    background-color: rgb(0 0 0 / 25%);
+    background-color: $btnBgColorHover;
   }
   background-color: transparent;
   border-radius: 1rem;

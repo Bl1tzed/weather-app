@@ -1,41 +1,4 @@
-import ForecastByDay from "./ForecastByDay";
-import CurrentDayInfo from "./CurrentDayInfo";
-import MiscComponent from "./MiscComponent";
-import ForecastByHour from "./ForecastByHour";
-
-import { useState } from "react";
-
-export default function WeatherInformation({ fetchData }) {
-  const [dayRef, setDayRef] = useState(0);
-
-  if (!fetchData) return null;
-  if (!fetchData.location) return "Incorrect city";
-  return (
-    <div className="content-box">
-      <ForecastByDay
-        fetchData={fetchData}
-        getWeatherIconURL={getWeatherIconURL}
-        setDayRef={setDayRef}
-      />
-      <CurrentDayInfo
-        fetchData={fetchData}
-        getWeatherIconURL={getWeatherIconURL}
-      />
-      <MiscComponent
-        fetchData={fetchData}
-        getWeatherIconURL={getWeatherIconURL}
-      />
-      <ForecastByHour
-        fetchData={fetchData}
-        getWeatherIconURL={getWeatherIconURL}
-        dayRef={dayRef}
-        setDayRef={setDayRef}
-      />
-    </div>
-  );
-}
-
-function getWeatherIconURL(FD) {
+export default function getWeatherIconURL(FD) {
   const urlBase = "/svg/";
   const extension = ".svg";
   let fetchDataTime = FD.is_day;

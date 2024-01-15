@@ -1,6 +1,10 @@
-import SmallWeatherCard from "SmallWeatherCard";
+import { FetchDataContext } from "App";
+import SmallWeatherCard from "components/SmallWeatherCard";
+import { useContext } from "react";
+import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 
-export default function MiscComponent({ fetchData, getWeatherIconURL }) {
+export default function MiscComponent() {
+  const fetchData = useContext(FetchDataContext);
   const FD = fetchData.forecast.forecastday[0];
 
   return (

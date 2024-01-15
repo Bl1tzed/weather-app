@@ -10,20 +10,12 @@ html {
 }
 
 body {
-  background-color: $bgColor;
+  background-color: $black;
 }
 
 button:hover {
   cursor: pointer;
 }
-
-// .input-box {
-//   margin: 20px auto;
-//   max-width: 80rem;
-//   color: gray;
-//   font: $font;
-//   background-color: gray;
-// }
 
 .content-box {
   font: $font;

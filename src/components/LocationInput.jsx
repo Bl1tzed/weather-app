@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import styles from "scss/LocationInput.module.scss";
+import styles from "styles/LocationInput.module.scss";
 
 export default function LocationInput({ setLocation }) {
   const [search, setSearch] = useState("");
@@ -25,7 +25,7 @@ export default function LocationInput({ setLocation }) {
           )
         )
         .catch((err) => console.error(err));
-    }, 1000);
+    }, 600);
     return () => clearTimeout(delayDebounceFn);
   }, [search]);
 
