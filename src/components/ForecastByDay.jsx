@@ -3,6 +3,7 @@ import { useContext } from "react";
 import clsx from "clsx";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 import styles from "styles/ForecastByDay.module.scss";
+import months from "utils/months";
 
 export default function ForecastByDay({ setDayRef }) {
   // const [lastCardIndex, setLastCardIndex] = useState(3);
@@ -63,20 +64,6 @@ export default function ForecastByDay({ setDayRef }) {
 }
 
 function ForecastDayInfo({ index }) {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   const fetchData = useContext(FetchDataContext);
   const FD = fetchData.forecast.forecastday[index];
   const date = new Date(FD.date);

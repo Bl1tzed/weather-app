@@ -3,6 +3,7 @@ import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 import { useState, useEffect, useContext } from "react";
 import FetchDataContext from "context/FetchDataContext";
 import { getCorrectTime } from "utils/helpers";
+import months from "utils/months";
 
 export default function ForecastByHour({ dayRef }) {
   const [dayIndex, setDayIndex] = useState(dayRef);
@@ -11,20 +12,6 @@ export default function ForecastByHour({ dayRef }) {
   const hourIndex = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
   const FD = fetchData.forecast.forecastday[dayIndex];
   const date = new Date(FD.date);
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   useEffect(() => {
     setDayIndex(dayRef);
@@ -37,7 +24,7 @@ export default function ForecastByHour({ dayRef }) {
   }
 
   function handleNextClick() {
-    if (dayIndex < 6) {
+    if (dayIndex < 2) {
       setDayIndex(dayIndex + 1);
     }
   }
