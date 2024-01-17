@@ -1,27 +1,27 @@
 import FetchDataContext from "context/FetchDataContext";
-import { useContext } from "react";
+import { memo, useContext, useState } from "react";
 import clsx from "clsx";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 import styles from "styles/ForecastByDay.module.scss";
 import months from "utils/months";
+import GhostButton from "./GhostButton";
 
-export default function ForecastByDay({ setDayRef }) {
-  // const [lastCardIndex, setLastCardIndex] = useState(3);
-  const lastCardIndex = 2;
+export function ForecastByDay({ setDayRef }) {
+  const [lastCardIndex, setLastCardIndex] = useState(2);
   const FD = useContext(FetchDataContext);
   const forecastDays = [lastCardIndex - 2, lastCardIndex - 1, lastCardIndex];
 
-  // function handlePrevClick() {
-  //   if (lastCardIndex > 3) {
-  //     setLastCardIndex(lastCardIndex - 1);
-  //   }
-  // }
+  function handlePrevClick() {
+    if (lastCardIndex > 2) {
+      setLastCardIndex(lastCardIndex - 1);
+    }
+  }
 
-  // function handleNextClick() {
-  //   if (lastCardIndex < 6) {
-  //     setLastCardIndex(lastCardIndex + 1);
-  //   }
-  // }
+  function handleNextClick() {
+    if (lastCardIndex < 2) {
+      setLastCardIndex(lastCardIndex + 1);
+    }
+  }
 
   return (
     <div className={clsx(styles.main, "column")}>
@@ -29,15 +29,13 @@ export default function ForecastByDay({ setDayRef }) {
         {FD.location.name}, {FD.location.country}
       </div>
       <div className={styles.content}>
-        <div className={styles.btnWrap}>
-          {/* <button
-            className={styles.btn}
-            onClick={handlePrevClick}
-            aria-label="Previous day"
-          >
-            <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
-          </button> */}
-        </div>
+        <GhostButton
+          className={styles.btn}
+          aria-label="Previous day"
+          onClick={handlePrevClick}
+        >
+          <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
+        </GhostButton>
         {forecastDays.map((index) => {
           return (
             <div
@@ -49,15 +47,13 @@ export default function ForecastByDay({ setDayRef }) {
             </div>
           );
         })}
-        <div className={styles.btnWrap}>
-          {/* <button
-            className={styles.btn}
-            onClick={handleNextClick}
-            aria-label="Next day"
-          >
-            <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
-          </button> */}
-        </div>
+        <GhostButton
+          className={styles.btn}
+          aria-label="Next day"
+          onClick={handleNextClick}
+        >
+          <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
+        </GhostButton>
       </div>
     </div>
   );
@@ -79,12 +75,14 @@ function ForecastDayInfo({ index }) {
       </div>
       <div>{FD.day.condition.text}</div>
       <div className={styles.info}>
-        <div className={styles.mintemp + " opacity-medium"}>
+        <div className={clsx(styles.mintemp, "opacity-medium")}>
           {Math.round(FD.day.mintemp_c)}°C
         </div>
-        <div>{Math.round(FD.hour[16].temp_c)}°C</div>
+        <div>{`${Math.round(FD.hour[16].temp_c)}°C`}</div>
       </div>
       <div className="opacity-medium">HMD {FD.day.avghumidity}%</div>
     </>
   );
 }
+
+export default memo(ForecastByDay);

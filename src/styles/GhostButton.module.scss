@@ -1,0 +1,17 @@
+@import "variables.scss";
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease-out;
+  padding: 0.5rem;
+  &:hover,
+  &Active {
+    background-color: $btnBgColorHover;
+  }
+}

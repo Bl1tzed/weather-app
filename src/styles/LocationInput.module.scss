@@ -1,23 +1,21 @@
 @import "variables.scss";
 
-svg {
+.svg {
   color: $searchColor;
   width: 2rem;
   height: 2rem;
   z-index: 3;
   position: absolute;
   left: 2rem;
+  top: 0;
+  transform: translateY(50%);
 }
 
 .inputBox {
   width: 60%;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-width: 20rem;
   max-width: 60rem;
-  color: $fontColor;
   z-index: 2;
   position: relative;
 }
@@ -35,8 +33,7 @@ svg {
 .inputField {
   border: 2px solid $borderColor;
   background-color: $inputBgColor;
-  padding: 0 2.5rem;
-  padding-left: 5rem;
+  padding: 0 2.5rem 0 5rem;
   border-radius: 1.5rem;
   color: $fontColor;
   height: 100%;

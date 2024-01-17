@@ -4,14 +4,16 @@ import { useState, useEffect, useContext } from "react";
 import FetchDataContext from "context/FetchDataContext";
 import { getCorrectTime } from "utils/helpers";
 import months from "utils/months";
+import GhostButton from "./GhostButton";
+import clsx from "clsx";
 
 export default function ForecastByHour({ dayRef }) {
   const [dayIndex, setDayIndex] = useState(dayRef);
   const [weatherMode, setWeatherMode] = useState("temp");
   const fetchData = useContext(FetchDataContext);
-  const hourIndex = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
   const FD = fetchData.forecast.forecastday[dayIndex];
   const date = new Date(FD.date);
+  const hourIndex = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
 
   useEffect(() => {
     setDayIndex(dayRef);
@@ -28,37 +30,26 @@ export default function ForecastByHour({ dayRef }) {
       setDayIndex(dayIndex + 1);
     }
   }
+
   return (
-    <div className={styles.main + " column"}>
-      <header>
+    <div className={clsx(styles.main, "column")}>
+      <div className={styles.header}>
         <div className={styles.headerLabel}>
-          <div className={styles.btnWrap}>
-            <button
-              className={styles.btn}
-              onClick={handlePrevClick}
-              aria-label="Previous day"
-            >
-              <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
-            </button>
-          </div>
+          <GhostButton onClick={handlePrevClick} aria-label="Previous day">
+            <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
+          </GhostButton>
           <div className={styles.headerText} key={date}>
             {date.getDate()} {months[date.getMonth()]}
           </div>
-          <div className={styles.btnWrap}>
-            <button
-              className={styles.btn}
-              onClick={handleNextClick}
-              aria-label="Next day"
-            >
-              <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
-            </button>
-          </div>
+          <GhostButton onClick={handleNextClick} aria-label="Next day">
+            <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
+          </GhostButton>
         </div>
-      </header>
+      </div>
       <div className={styles.content}>
         {hourIndex.map((index) => {
           return (
-            <div key={index + date} className={styles.hour}>
+            <div key={index + dayIndex} className={styles.hour}>
               <ForecastHourInfo
                 dayIndex={dayIndex}
                 weatherMode={weatherMode}
@@ -68,51 +59,42 @@ export default function ForecastByHour({ dayRef }) {
           );
         })}
         <div className={styles.weatherMode}>
-          <button
-            className={
-              styles.weatherModeBtn +
-              " " +
-              (weatherMode === "temp" && styles.active)
-            }
-            onClick={() => setWeatherMode("temp")}
+          <GhostButton
+            className={styles.weatherModeBtn}
+            active={weatherMode === "temp"}
             title="Celsius temperature"
+            onClick={() => setWeatherMode("temp")}
           >
             <img
               src="svg/thermometer-celsius.svg"
               alt="Weather Icon"
               className={styles.weatherModeIcon}
             />
-          </button>
-          <button
-            className={
-              styles.weatherModeBtn +
-              " " +
-              (weatherMode === "hmd" && styles.active)
-            }
-            onClick={() => setWeatherMode("hmd")}
+          </GhostButton>
+          <GhostButton
+            className={styles.weatherModeBtn}
+            active={weatherMode === "hmd"}
             title="Humidity"
+            onClick={() => setWeatherMode("hmd")}
           >
             <img
               src="svg/humidity.svg"
               alt="Weather Icon"
               className={styles.weatherModeIcon}
             />
-          </button>
-          <button
-            className={
-              styles.weatherModeBtn +
-              " " +
-              (weatherMode === "wind" && styles.active)
-            }
-            onClick={() => setWeatherMode("wind")}
+          </GhostButton>
+          <GhostButton
+            className={styles.weatherModeBtn}
+            active={weatherMode === "wind"}
             title="Wind speed"
+            onClick={() => setWeatherMode("wind")}
           >
             <img
               src="svg/tornado.svg"
               alt="Weather Icon"
               className={styles.weatherModeIcon}
             />
-          </button>
+          </GhostButton>
         </div>
       </div>
     </div>

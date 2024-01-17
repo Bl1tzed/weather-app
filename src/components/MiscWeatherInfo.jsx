@@ -1,9 +1,9 @@
 import FetchDataContext from "context/FetchDataContext";
 import SmallWeatherCard from "components/SmallWeatherCard";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 
-export default function MiscComponent() {
+export function MiscWeatherInfo() {
   const fetchData = useContext(FetchDataContext);
   const FD = fetchData.forecast.forecastday[0];
 
@@ -18,6 +18,8 @@ export default function MiscComponent() {
     />
   );
 }
+
+export default memo(MiscWeatherInfo);
 
 const timeConversion = (time) => {
   const [timeWithoutPeriod, period] = time.split(" ");

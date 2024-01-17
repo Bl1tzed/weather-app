@@ -1,5 +1,6 @@
 // a11y Accessability w3c
 
+import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import styles from "styles/LocationInput.module.scss";
@@ -51,7 +52,10 @@ export default function LocationInput({ setLocation }) {
   return (
     <div className={styles.inputBox}>
       <div className={styles.inputWrapper}>
-        <FaSearch id="search-icon fa-4x" />
+        <FaSearch
+          className={styles.svg}
+          id={clsx(styles["search-icon"], "fa-4x")}
+        />
         <input
           className={styles.inputField}
           type="text"
@@ -60,7 +64,7 @@ export default function LocationInput({ setLocation }) {
           value={search}
           onKeyDown={handleOnKeyDown}
         />
-        {results.length ? (
+        {!!results.length && (
           <div className={styles.resultsList} key={results}>
             {results.map((_, index) => {
               const link = results[index].value
@@ -80,7 +84,7 @@ export default function LocationInput({ setLocation }) {
               );
             })}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

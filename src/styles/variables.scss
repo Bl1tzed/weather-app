@@ -4,13 +4,15 @@ $borderColor: rgb(255 255 255 / 15%);
 $black: rgb(0, 0, 0);
 $opacityColorMedium: rgb(255 255 255 / 60%);
 $opacityColorLow: rgb(255 255 255 / 45%);
-$fontColor: aliceblue;
+$fontColor: rgb(240, 248, 255);
+$btnBgColorHover: rgb(0 0 0 / 25%);
+$searchColor: rgb(170, 170, 170);
+$inputBgColor: rgb(17, 17, 17);
+$inputBgColorHover: rgb(34, 34, 34);
+$inputBorderFocus: rgb(135, 206, 235);
+$glowColor: rgb(156, 156, 156);
+
 $font:
   1.4rem "Century Gothic",
   Futura,
   sans-serif;
-$btnBgColorHover: rgb(0 0 0 / 25%);
-$searchColor: #aaa;
-$inputBgColor: #111;
-$inputBgColorHover: #222;
-$inputBorderFocus: skyblue;

@@ -9,30 +9,21 @@
 .content {
   display: grid;
   justify-content: center;
-  grid-template-columns: 1rem repeat(3, 15rem) 1rem;
+  grid-template-columns: repeat(3, 15rem);
   column-gap: 0.5rem;
 }
 
-.btnWrap {
+.content {
   display: flex;
-  align-items: center;
   justify-content: center;
+  column-gap: 0.5rem;
 }
 
 .btn {
   font-size: 2rem;
   font-weight: 700;
-  border: none;
   color: $opacityColorMedium;
-  background: none;
-  padding: 0.5rem;
-  height: 95%;
-  &:hover {
-    background-color: $btnBgColorHover;
-  }
-  background-color: transparent;
-  border-radius: 1rem;
-  transition: background-color 0.2s ease-out;
+  margin-top: 0.5rem;
 }
 
 .day {

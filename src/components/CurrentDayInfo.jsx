@@ -1,10 +1,10 @@
 import SmallWeatherCard from "components/SmallWeatherCard";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 import FetchDataContext from "context/FetchDataContext";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { getCorrectTime } from "utils/helpers";
 
-export default function CurrentDayInfo() {
+export function CurrentDayInfo() {
   const fetchData = useContext(FetchDataContext);
   const FD = fetchData.current;
 
@@ -21,3 +21,5 @@ export default function CurrentDayInfo() {
     />
   );
 }
+
+export default memo(CurrentDayInfo);

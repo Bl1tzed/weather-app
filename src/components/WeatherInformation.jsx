@@ -1,6 +1,6 @@
 import ForecastByDay from "./ForecastByDay";
 import CurrentDayInfo from "./CurrentDayInfo";
-import MiscComponent from "./MiscComponent";
+import MiscWeatherInfo from "./MiscWeatherInfo";
 import ForecastByHour from "./ForecastByHour";
 import { useContext, useState } from "react";
 import FetchDataContext from "context/FetchDataContext";
@@ -16,7 +16,7 @@ export default function WeatherInformation() {
     <div className="content-box">
       <ForecastByDay setDayRef={setDayRef} />
       <CurrentDayInfo />
-      <MiscComponent />
+      <MiscWeatherInfo />
       <ForecastByHour dayRef={dayRef} />
     </div>
   );
