@@ -9,7 +9,7 @@
 .content {
   display: grid;
   justify-content: center;
-  grid-template-columns: 1rem repeat(4, 15rem) 1rem;
+  grid-template-columns: 1rem repeat(3, 15rem) 1rem;
   column-gap: 0.5rem;
 }
 

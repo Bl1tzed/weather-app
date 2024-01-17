@@ -1,30 +1,27 @@
 import FetchDataContext from "context/FetchDataContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import clsx from "clsx";
 import getWeatherIconURL from "utils/getWeatherIconURL.jsx";
 import styles from "styles/ForecastByDay.module.scss";
 
 export default function ForecastByDay({ setDayRef }) {
-  const [lastCardIndex, setLastCardIndex] = useState(3);
+  // const [lastCardIndex, setLastCardIndex] = useState(3);
+  const lastCardIndex = 2;
   const FD = useContext(FetchDataContext);
-  const forecastDays = [
-    lastCardIndex - 3,
-    lastCardIndex - 2,
-    lastCardIndex - 1,
-    lastCardIndex,
-  ];
+  const forecastDays = [lastCardIndex - 2, lastCardIndex - 1, lastCardIndex];
 
-  function handlePrevClick() {
-    if (lastCardIndex > 3) {
-      setLastCardIndex(lastCardIndex - 1);
-    }
-  }
+  // function handlePrevClick() {
+  //   if (lastCardIndex > 3) {
+  //     setLastCardIndex(lastCardIndex - 1);
+  //   }
+  // }
 
-  function handleNextClick() {
-    if (lastCardIndex < 6) {
-      setLastCardIndex(lastCardIndex + 1);
-    }
-  }
+  // function handleNextClick() {
+  //   if (lastCardIndex < 6) {
+  //     setLastCardIndex(lastCardIndex + 1);
+  //   }
+  // }
+
   return (
     <div className={clsx(styles.main, "column")}>
       <div className={styles.header}>
@@ -32,13 +29,13 @@ export default function ForecastByDay({ setDayRef }) {
       </div>
       <div className={styles.content}>
         <div className={styles.btnWrap}>
-          <button
+          {/* <button
             className={styles.btn}
             onClick={handlePrevClick}
             aria-label="Previous day"
           >
             <img src="svg/lt.svg" className="btnIcon" alt="Previous day" />
-          </button>
+          </button> */}
         </div>
         {forecastDays.map((index) => {
           return (
@@ -52,13 +49,13 @@ export default function ForecastByDay({ setDayRef }) {
           );
         })}
         <div className={styles.btnWrap}>
-          <button
+          {/* <button
             className={styles.btn}
             onClick={handleNextClick}
             aria-label="Next day"
           >
             <img src="svg/gt.svg" className="btnIcon" alt="Next day" />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
