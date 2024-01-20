@@ -30,7 +30,7 @@ export function ForecastByDay({ setDayRef }) {
       </div>
       <div className={styles.content}>
         <GhostButton
-          className={styles.btn}
+          className={clsx(styles.btn, lastCardIndex < 4 && styles.hidden)}
           aria-label="Previous day"
           onClick={handlePrevClick}
         >
@@ -48,7 +48,7 @@ export function ForecastByDay({ setDayRef }) {
           );
         })}
         <GhostButton
-          className={styles.btn}
+          className={clsx(styles.btn, lastCardIndex < 4 && styles.hidden)}
           aria-label="Next day"
           onClick={handleNextClick}
         >
